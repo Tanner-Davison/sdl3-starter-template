@@ -13,7 +13,7 @@ set(SOURCES
 )
 
 # Headers
-set(CMAKE_EXE_LINKER_FLAGS "/SUBSYSTEM:CONSOLE")
+# set(CMAKE_EXE_LINKER_FLAGS "/SUBSYSTEM:CONSOLE")
 # Add the executable
 add_executable(${PROJECT_NAME} ${SOURCES})
 
