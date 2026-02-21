@@ -1,7 +1,7 @@
 // SDL3 Starter Template
 
-#include <SDL3/SDL_main.h>
 #include "window.hpp"
+#include <SDL3/SDL_main.h>
 
 int main(int argc, char *argv[]) {
 	 try {
