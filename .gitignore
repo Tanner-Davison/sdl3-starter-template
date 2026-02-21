@@ -8,6 +8,8 @@ Makefile
 cmake_install.cmake
 install_manifest.txt
 compile_commands.json
+compile_flags.txt
+install-deps.sh
 CTestTestfile.cmake
 _deps
 CMakeUserPresets.json
