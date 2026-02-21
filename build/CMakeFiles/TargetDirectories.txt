@@ -1,3 +1,0 @@
-/home/tanner/projects/cpp/sdl2-starter-template/build/CMakeFiles/sdl2-starter-template.dir
-/home/tanner/projects/cpp/sdl2-starter-template/build/CMakeFiles/edit_cache.dir
-/home/tanner/projects/cpp/sdl2-starter-template/build/CMakeFiles/rebuild_cache.dir

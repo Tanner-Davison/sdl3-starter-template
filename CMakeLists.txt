@@ -17,9 +17,13 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
-# Link SDL3 via find_package (install SDL3 on your system first)
-# Linux:   sudo apt install libsdl3-dev   (or build from source)
-# macOS:   brew install sdl3
-# Windows: set SDL3_DIR to your SDL3 cmake config folder
+# Dependencies managed by vcpkg (vcpkg.json)
 find_package(SDL3 REQUIRED)
-target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3)
+find_package(SDL3_image REQUIRED)
+find_package(SDL3_ttf REQUIRED)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    SDL3::SDL3
+    $<IF:$<TARGET_EXISTS:SDL3_image::SDL3_image-shared>,SDL3_image::SDL3_image-shared,SDL3_image::SDL3_image-static>
+    SDL3_ttf::SDL3_ttf
+)
