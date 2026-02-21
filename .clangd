@@ -1,7 +1,6 @@
 CompileFlags:
-  Add: 
-    - "-I${workspaceFolder}/include"
-    - "-I${workspaceFolder}/include/SDL2"
+  CompilationDatabase: build
+
 Index:
   Background: true
 
