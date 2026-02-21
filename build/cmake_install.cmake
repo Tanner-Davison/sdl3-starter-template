@@ -1,4 +1,4 @@
-# Install script for directory: /home/tanner/projects/cpp/sdl-starter
+# Install script for directory: /home/tanner/projects/cpp/sdl2-starter-template
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/tanner/projects/cpp/sdl-starter/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/tanner/projects/cpp/sdl2-starter-template/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
