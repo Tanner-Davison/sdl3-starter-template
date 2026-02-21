@@ -40,15 +40,15 @@ A minimal SDL3 starter template to get a window with a hardware-accelerated rend
   ```bash
   xcode-select --install
   ```
-- Install vcpkg:
+- Install vcpkg if you don't already have it (there is no standard install location — clone it wherever you prefer):
   ```bash
   git clone https://github.com/microsoft/vcpkg.git ~/vcpkg
   cd ~/vcpkg
   ./bootstrap-vcpkg.sh
   ```
-- Set the environment variable (add to your `~/.zshrc`):
+- Set `VCPKG_ROOT` to wherever you cloned vcpkg (add to your `~/.zshrc`):
   ```bash
-  export VCPKG_ROOT=~/vcpkg
+  export VCPKG_ROOT=~/vcpkg  # update this to match your actual vcpkg location
   export CMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
   ```
 
