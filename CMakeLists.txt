@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(sdl-starter)
+project(sdl2-starter-template)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

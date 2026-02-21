@@ -3,9 +3,10 @@
 #include <stdexcept>
 
 SDLWindow::SDLWindow(int width, int height, const std::string &title)
-    : gWindow(nullptr), gScreenSurface(nullptr), gHelloWorld(nullptr), gRenderer(nullptr) {
+    : gWindow(nullptr), gScreenSurface(nullptr), gRenderer(nullptr) {
 	 SCREEN_WIDTH  = width;
 	 SCREEN_HEIGHT = height;
+	 m_title       = title;
 	 if (!init()) {
 			throw std::runtime_error("Failed to initialize SDL window.");
 	 }
@@ -21,7 +22,7 @@ bool SDLWindow::init() {
 	 }
 
 	 // Create the main window
-	 gWindow = SDL_CreateWindow("SDL Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+	 gWindow = SDL_CreateWindow(m_title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 	 if (gWindow == nullptr) {
 			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
 			return false;
@@ -39,16 +40,6 @@ bool SDLWindow::init() {
 	 return true;
 }
 
-bool SDLWindow::loadMedia(const char *path) {  // UNUSED
-	 // Load BMP image
-	 gHelloWorld = SDL_LoadBMP(path);
-	 if (gHelloWorld == nullptr) {
-			printf("Unable to load image %s! SDL Error: %s\n", path, SDL_GetError());
-			return false;
-	 }
-	 return true;
-}
-
 bool SDLWindow::handleEvents() {
 	 SDL_Event e;
 
@@ -63,12 +54,6 @@ bool SDLWindow::handleEvents() {
 }
 
 void SDLWindow::close() {
-	 // Free the loaded image surface
-	 if (gHelloWorld != nullptr) {
-			SDL_FreeSurface(gHelloWorld);
-			gHelloWorld = nullptr;
-	 }
-
 	 // Destroy the renderer
 	 if (gRenderer != nullptr) {
 			SDL_DestroyRenderer(gRenderer);

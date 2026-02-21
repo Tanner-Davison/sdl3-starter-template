@@ -9,7 +9,6 @@ class SDLWindow {
 	 ~SDLWindow();
 
 	 bool init();                                        // Starts up SDL and creates the window
-	 bool loadMedia(const char *path);                   // Loads media
 	 void close();                                       // Frees media and shuts down SDL
 	 bool handleEvents();                                // Handle SDL events, returns false when window should close
 	 bool shouldClose() const { return m_shouldClose; }  // Check if window should close
@@ -21,10 +20,10 @@ class SDLWindow {
  private:
 	 int SCREEN_WIDTH;
 	 int SCREEN_HEIGHT;
+	 std::string m_title;
 	 bool m_shouldClose = false;  // Flag to track if window should close
 
-	 SDL_Window *gWindow;          // Destroyed Window;
-	 SDL_Surface *gScreenSurface;  // Freed surface;
-	 SDL_Surface *gHelloWorld;     // Freed Surface;
-	 SDL_Renderer *gRenderer;      // Destroyed Renderer;
+	 SDL_Window *gWindow;          // Destroyed in close()
+	 SDL_Surface *gScreenSurface;  // Freed in close()
+	 SDL_Renderer *gRenderer;      // Destroyed in close()
 };

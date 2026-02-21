@@ -1,4 +1,4 @@
-// Testing Code Companion
+// SDL2 Starter Template
 
 #include "window.hpp"
 
