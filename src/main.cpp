@@ -1,5 +1,6 @@
-// SDL2 Starter Template
+// SDL3 Starter Template
 
+#include <SDL3/SDL_main.h>
 #include "window.hpp"
 
 int main(int argc, char *argv[]) {
@@ -15,7 +16,6 @@ int main(int argc, char *argv[]) {
 				 SDL_RenderClear(gameWindow.getRenderer());
 
 				 // TODO: Render game objects
-				 // gameWindow.render();
 
 				 SDL_RenderPresent(gameWindow.getRenderer());
 			}

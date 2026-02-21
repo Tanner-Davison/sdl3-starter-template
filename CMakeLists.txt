@@ -12,25 +12,14 @@ set(SOURCES
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 
-# Include SDL2 headers
+# Include src for local headers
 target_include_directories(${PROJECT_NAME} PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/SDL2
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
-# Link SDL2 — looks for bundled Windows libs in lib/x64/
-# On Linux, replace with: target_link_libraries(${PROJECT_NAME} PRIVATE SDL2)
-find_library(SDL2_LIB SDL2 PATHS ${CMAKE_CURRENT_SOURCE_DIR}/lib/x64)
-if (SDL2_LIB)
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${SDL2_LIB})
-else()
-    message(FATAL_ERROR "SDL2 library not found in ${CMAKE_CURRENT_SOURCE_DIR}/lib/x64")
-endif()
-
-# Copy SDL2.dll to the output directory (Windows runtime requirement)
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    ${CMAKE_CURRENT_SOURCE_DIR}/bin/SDL2.dll
-    $<TARGET_FILE_DIR:${PROJECT_NAME}>
-)
+# Link SDL3 via find_package (install SDL3 on your system first)
+# Linux:   sudo apt install libsdl3-dev   (or build from source)
+# macOS:   brew install sdl3
+# Windows: set SDL3_DIR to your SDL3 cmake config folder
+find_package(SDL3 REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3)

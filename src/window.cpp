@@ -1,5 +1,4 @@
 #include "window.hpp"
-#include "SDL_video.h"
 #include <stdexcept>
 
 SDLWindow::SDLWindow(int width, int height, const std::string &title)
@@ -16,20 +15,20 @@ SDLWindow::~SDLWindow() { close(); }
 
 bool SDLWindow::init() {
 	 // Initialize SDL video subsystem
-	 if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+	 if (!SDL_Init(SDL_INIT_VIDEO)) {
 			printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
 			return false;
 	 }
 
 	 // Create the main window
-	 gWindow = SDL_CreateWindow(m_title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+	 gWindow = SDL_CreateWindow(m_title.c_str(), SCREEN_WIDTH, SCREEN_HEIGHT, 0);
 	 if (gWindow == nullptr) {
 			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
 			return false;
 	 }
 
 	 // Create hardware-accelerated renderer
-	 gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
+	 gRenderer = SDL_CreateRenderer(gWindow, NULL);
 	 if (gRenderer == nullptr) {
 			printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
 			return false;
@@ -44,8 +43,7 @@ bool SDLWindow::handleEvents() {
 	 SDL_Event e;
 
 	 while (SDL_PollEvent(&e)) {
-			// Check for quit event
-			if (e.type == SDL_QUIT) {
+			if (e.type == SDL_EVENT_QUIT) {
 				 m_shouldClose = true;
 				 return false;
 			}
@@ -66,12 +64,11 @@ void SDLWindow::close() {
 			gWindow = nullptr;
 	 }
 
-	 // Free the screen surface
+	 // Destroy the screen surface
 	 if (gScreenSurface != nullptr) {
-			SDL_FreeSurface(gScreenSurface);
+			SDL_DestroySurface(gScreenSurface);
 			gScreenSurface = nullptr;
 	 }
 
-	 // Shut down SDL
 	 SDL_Quit();
 }
