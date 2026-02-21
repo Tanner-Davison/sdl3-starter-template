@@ -1,4 +1,5 @@
-# SDL3 starter template from: Tanner Davison
+# SDL3 Starter Template
+### By: Tanner Davison
 
 A minimal SDL3 starter template to get a window with a hardware-accelerated renderer up and running quickly. Includes SDL3, SDL3_image, and SDL3_ttf — managed automatically via vcpkg.
 
