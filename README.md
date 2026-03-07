@@ -20,7 +20,7 @@ Includes SDL3, SDL3_image, and SDL3_ttf via vcpkg.
 
 ### 1. Install vcpkg
 
-Skip this if you already have it. Clone it anywhere — there is no standard location.
+Skip this if you already have it. Clone it anywhere, there is no standard location.
 
 ```bash
 git clone https://github.com/microsoft/vcpkg.git ~/vcpkg
